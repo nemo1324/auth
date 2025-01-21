@@ -1,0 +1,12 @@
+grpc:
+  port: "44044"
+
+postgres:
+  host: "postgres"
+  port: "5432"
+  user: "postgres"
+  dbName: "postgres"
+  password: "qwerty"
+  sslmode: "disable"
+
+token_ttl: "1h"
