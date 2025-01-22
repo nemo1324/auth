@@ -2,7 +2,8 @@ package auth
 
 import (
 	"context"
-	"github.com/nemo1324/protos/gen/go/auth"
+	"market/protos/gen/go/auth"
+
 	"google.golang.org/grpc"
 )
 
