@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "pkg/proto/auth;auth";
+
+// Сервис авторизации и управления пользователями
+service AuthService {
+  // логин(регистрация) пользователя
+  rpc Login (LoginRequest) returns (LoginResponse);
+  // разлогин(выход) пользователя
+  rpc Logout (LogoutRequest) returns (LogoutResponse);
+  // Получение данных о пользователе на основе его ID
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  // Обновление данных пользователя а основе его ID
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+}
+
+message LoginRequest {
+  int64 user_id = 1;
+  string email = 2;
+  string name = 3;
+  string password = 4;
+}
+
+message LoginResponse {
+  // user_id - пользователь, который зарегался
+  int64 user_id = 1;
+  // message - сообщение о регистрации. Аля 'Успешно зарегался'
+  string message = 2;
+}
+
+message LogoutRequest {
+  // user_id - ID пользователя, которого надо разлогинить из системы
+  int64 user_id = 1;
+}
+
+message LogoutResponse {
+  //  user_id - пользователь, который разлогинился
+  int64 user_id = 1;
+  // message - сообщение о разлогине. Аля 'Успешно вышел из системы'
+  string message = 2;
+}
+
+message GetUserRequest {
+  int64 user_id = 1;
+}
+
+message GetUserResponse {
+  string name = 1;
+  string email = 2;
+}
+
+message UpdateUserRequest {
+  int64 user_id = 1;
+  string name = 2; // меняем пользователю имя
+  string email = 3; // меняем пользователю почту
+}
+
+message UpdateUserResponse {
+  string message = 1; // Аля 'Данные успешно обновлены'
+}
